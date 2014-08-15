@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 public final class DiskUtils {
 
     public static String readString(String filename) throws IOException {
+        Loggers.debugLogger.debug(Paths.get(filename));
         return new String(Files.readAllBytes(Paths.get(filename)));
     }
 

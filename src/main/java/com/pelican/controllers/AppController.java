@@ -1,5 +1,7 @@
 package com.pelican.controllers;
 
+import com.pelican.service.Facebook;
+import com.pelican.utils.Loggers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,9 +16,11 @@ public class AppController {
     @RequestMapping(value = {"/", "/helloworld**"}, method = {RequestMethod.GET})
     public ModelAndView welcomePage() {
         ModelAndView model = new ModelAndView();
-        model.addObject("title", "Spring Security Tutorial");
-        model.addObject("message", "Welcome Page!");
+        model.addObject("title", "If you read this it works");
+        model.addObject("message", "Thank you for testing =)");
+        model.addObject("auth_uri", Facebook.getCodeRequestURI());
         model.setViewName("helloworld");
+        Loggers.debugLogger.debug(model);
         return model;
     }
 
@@ -41,5 +45,10 @@ public class AppController {
 
         return model;
 
+    }
+
+    @RequestMapping(value = "/facebook_init_error", method = RequestMethod.GET)
+    public ModelAndView facebookInitErrorPage(){
+        return new ModelAndView();
     }
 }
