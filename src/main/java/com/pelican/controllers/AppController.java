@@ -15,7 +15,7 @@ public class AppController {
     public ModelAndView welcomePage() {
         ModelAndView model = new ModelAndView();
         model.addObject("title", "Spring Security Tutorial");
-        model.addObject("message", "Welcome Page !");
+        model.addObject("message", "Welcome Page!");
         model.setViewName("helloworld");
         return model;
     }
