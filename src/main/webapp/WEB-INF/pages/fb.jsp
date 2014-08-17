@@ -18,6 +18,7 @@
 
 <div>First name: ${first_name}</div>
 <div>Last name: ${last_name}</div>
+<div>Full info: ${user}</div>
 
 </body>
 </html>

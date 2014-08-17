@@ -1,6 +1,5 @@
 package com.pelican.config;
 
-import com.pelican.config.application.WebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**

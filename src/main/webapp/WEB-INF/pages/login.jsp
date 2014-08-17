@@ -79,14 +79,17 @@
                         <fieldset>
 
                             <c:if test="${param.error!=null}">
-                                <div  class="alert alert-danger">
+                                <div class="alert alert-danger alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                     Invalid username or password
                                 </div>
+
                             </c:if>
 
                             <c:if test="${param.logout!=null}">
-                                <div  class="alert alert-success">
-                                    You have been logged out.
+                                <div class="alert alert-info alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    You have been logged out
                                 </div>
                             </c:if>
 

@@ -2,8 +2,10 @@ package com.pelican.controllers;
 
 import com.pelican.service.Facebook;
 import com.pelican.utils.Loggers;
+import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
+import com.restfb.types.Post;
 import com.restfb.types.User;
 import org.apache.oltu.oauth2.client.OAuthClient;
 import org.apache.oltu.oauth2.client.URLConnectionClient;
@@ -22,11 +24,10 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class FbAuthController {
-
     @RequestMapping(value = {"/fb"}, method = {RequestMethod.GET})
-    public ModelAndView fbCodePage(@RequestParam(value = "code", required = false) String code) {
+    public ModelAndView fbAuth(@RequestParam(value = "code", required = false) String code) {
         if (code == null)
-            return errorMessage();
+            return redirectToFbAuthPage();
 
         User user = null;
         try {
@@ -47,8 +48,6 @@ public class FbAuthController {
             FacebookClient facebookClient = new DefaultFacebookClient(accessToken);
             user = facebookClient.fetchObject("me", User.class);
 
-            Loggers.debugLogger.debug(user);
-
         } catch (OAuthSystemException | OAuthProblemException e) {
             e.printStackTrace();
         }
@@ -56,16 +55,17 @@ public class FbAuthController {
         return buildModelAndView(user);
     }
 
-    private static ModelAndView errorMessage() {
-        ModelAndView model = new ModelAndView("redirect:"+Facebook.getCodeRequestURI());
-//        model.addObject("auth_uri", Facebook.getCodeRequestURI());
-        return model;
+    private static ModelAndView redirectToFbAuthPage() {
+        return new ModelAndView("redirect:" + Facebook.getCodeRequestURI());
     }
 
     private static ModelAndView buildModelAndView(User user) {
         ModelAndView model = new ModelAndView();
         model.addObject("first_name", user.getFirstName());
         model.addObject("last_name", user.getLastName());
+        model.addObject("user", user);
+
+
         return model;
     }
 

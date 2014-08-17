@@ -37,6 +37,9 @@ public class Facebook {
         }
     }
 
+    public static void main(String[] args) {
+        System.out.println(getCodeRequestURI());
+    }
 
     public static String getCodeRequestURI() {
         return AUTH_REQUEST;

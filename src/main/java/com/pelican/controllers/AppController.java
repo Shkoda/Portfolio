@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AppController {
 
-    @RequestMapping(value = {"/", "/helloworld**"}, method = {RequestMethod.GET})
+    @RequestMapping(value = {"/helloworld**"}, method = {RequestMethod.GET})
     public ModelAndView welcomePage() {
         ModelAndView model = new ModelAndView();
         model.addObject("title", "If you read this it works");
