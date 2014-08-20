@@ -1,16 +1,6 @@
 package com.pelican.controllers;
 
-import com.pelican.entity.FB;
-import com.pelican.entity.FBCredentials;
-import com.pelican.service.FacebookExploration;
-import com.pelican.utils.Loggers;
-import com.restfb.DefaultFacebookClient;
-import com.restfb.FacebookClient;
-import com.restfb.types.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by Nightingale on 17.08.2014.
@@ -19,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class InfoController {
 //    @RequestMapping(value = {"/general"}, method = {RequestMethod.GET})
-//    public ModelAndView indexPage(FBCredentials credentials) {
+//    public ModelAndView generalPage(FBCredentials credentials) {
 //
 //        Loggers.debugLogger.debug(credentials);
 //

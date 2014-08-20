@@ -1,4 +1,4 @@
-package com.pelican.entity;
+package com.pelican.entity.fb;
 
 import lombok.ToString;
 import org.springframework.web.servlet.ModelAndView;

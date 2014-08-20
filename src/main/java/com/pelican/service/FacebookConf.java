@@ -1,7 +1,5 @@
 package com.pelican.service;
 
-import com.google.gson.annotations.SerializedName;
-import lombok.Data;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
 import org.apache.oltu.oauth2.common.OAuthProviderType;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
@@ -12,7 +10,7 @@ import java.util.Properties;
 /**
  * Created by Nightingale on 13.08.2014.
  */
-public class Facebook {
+public class FacebookConf {
     private static String APP_ID, APP_SECRET;
     private static String REDIRECT_URI;
     private static String AUTH_REQUEST;
@@ -21,7 +19,7 @@ public class Facebook {
     static {
         try {
             Properties properties = new Properties();
-            properties.load(Facebook.class.getResourceAsStream(FB_APP_CONFIG_PATH));
+            properties.load(FacebookConf.class.getResourceAsStream(FB_APP_CONFIG_PATH));
 
             APP_ID = properties.getProperty("app_id");
             APP_SECRET = properties.getProperty("app_secret");

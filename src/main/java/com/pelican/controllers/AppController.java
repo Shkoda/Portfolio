@@ -1,10 +1,11 @@
 package com.pelican.controllers;
 
-import com.pelican.entity.FB;
-import com.pelican.entity.FBCredentials;
-import com.pelican.service.Facebook;
+import com.pelican.entity.fb.FB;
+import com.pelican.entity.fb.FBCredentials;
+import com.pelican.service.FacebookConf;
 import com.pelican.service.FacebookExploration;
 import com.pelican.utils.Loggers;
+import com.restfb.Connection;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.types.User;
@@ -14,43 +15,52 @@ import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
 import org.apache.oltu.oauth2.client.response.GitHubTokenResponse;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
+import org.springframework.social.facebook.api.Facebook;
+import org.springframework.social.facebook.api.impl.FacebookTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * Created by Nightingale on 12.08.2014.
  */
 @Controller
-@SessionAttributes("credentials")
+@SessionAttributes({"credentials", "user"})
 public class AppController {
 
     @ModelAttribute("credentials")
     public FBCredentials createCredentials() {
+        Loggers.debugLogger.debug("Creating empty credentials holder...");
         return new FBCredentials();
+    }
+
+    @ModelAttribute("user")
+    public User createUser() {
+        Loggers.debugLogger.debug("Creating new user");
+        return new User();
     }
 
     @RequestMapping(value = {"/", "/fb_auth/auth_prompt"}, method = {RequestMethod.GET})
     public ModelAndView login(@ModelAttribute("credentials") FBCredentials credentials) {
-        Loggers.debugLogger.debug(credentials);
+        Loggers.debugLogger.debug("Login page :: "+credentials);
 
         ModelAndView modelAndView = new ModelAndView("/fb_auth/auth_prompt");
-        modelAndView.addObject("auth_uri", Facebook.getCodeRequestURI());
+        modelAndView.addObject("auth_uri", FacebookConf.getCodeRequestURI());
 
         return modelAndView;
     }
 
     @RequestMapping(value = {"/fb/authorization"}, method = {RequestMethod.GET})
     public ModelAndView fbAuth(@RequestParam(value = "code", required = false) String code, @ModelAttribute("credentials") FBCredentials credentials) {
-
-        Loggers.debugLogger.debug("in fb auth");
+        Loggers.debugLogger.debug("Fb auth :: "+credentials);
 
         if (code == null || code.length() == 0)
             return redirectToFbAuthPage();
 
         try {
-            OAuthClientRequest request = Facebook.getTokenRequestURI(code);
+            OAuthClientRequest request = FacebookConf.getTokenRequestURI(code);
             OAuthClient oAuthClient = new OAuthClient(new URLConnectionClient());
             GitHubTokenResponse oAuthResponse = oAuthClient.accessToken(request, GitHubTokenResponse.class);
 
@@ -67,18 +77,21 @@ public class AppController {
 
 
     @RequestMapping(value = {"/general"}, method = {RequestMethod.GET})
-    public ModelAndView indexPage(@ModelAttribute("credentials") FBCredentials credentials) {
-
-        Loggers.debugLogger.debug(credentials);
+    public ModelAndView generalPage(@ModelAttribute("credentials") FBCredentials credentials, @ModelAttribute("user") User user) {
+        Loggers.debugLogger.debug("General page :: "+credentials);
 
         FacebookClient facebookClient = new DefaultFacebookClient(credentials.getAccessToken());
-        User user = facebookClient.fetchObject("me", User.class);
+        user = facebookClient.fetchObject("me", User.class);
+        System.out.println(user+"\n\n");
 
         ModelAndView model = new ModelAndView();
         model.addObject("first_name", user.getFirstName());
         model.addObject("last_name", user.getLastName());
 
-        addProfilePicture(model);
+
+        Connection<User> myFriends = facebookClient.fetchConnection("me/friends", User.class);
+        List<User> friendList = myFriends.getData();
+
         return model;
     }
 
@@ -100,62 +113,7 @@ public class AppController {
     }
 
     private static ModelAndView redirectToFbAuthPage() {
-        return new ModelAndView("redirect:" + Facebook.getCodeRequestURI());
+        return new ModelAndView("redirect:" + FacebookConf.getCodeRequestURI());
     }
-//
-//    @RequestMapping(value = {"/helloworld**"}, method = {RequestMethod.GET})
-//    public ModelAndView welcomePage() {
-//        ModelAndView model = new ModelAndView();
-//        model.addObject("title", "If you read this it works");
-//        model.addObject("message", "Thank you for testing =)");
-//        model.addObject("auth_uri", Facebook.getCodeRequestURI());
-//        model.setViewName("helloworld");
-//        Loggers.debugLogger.debug(model);
-//        return model;
-//    }
-//
-//    @RequestMapping(value = "/protected**", method = RequestMethod.GET)
-//    public ModelAndView protectedPage() {
-//
-//        ModelAndView model = new ModelAndView();
-//        model.addObject("title", "Spring Security 3.2.4 Hello World Tutorial");
-//        model.addObject("message", "This is protected page - Only for Admin Users!");
-//        model.setViewName("protected");
-//        return model;
-//
-//    }
-//
-//    @RequestMapping(value = "/confidential**", method = RequestMethod.GET)
-//    public ModelAndView adminPage() {
-//
-//        ModelAndView model = new ModelAndView();
-//        model.addObject("title", "Spring Security 3.2.4 Hello World Tutorial");
-//        model.addObject("message", "This is confidential page - Need Super Admin Role!");
-//        model.setViewName("protected");
-//
-//        return model;
-//
-//    }
-//
-//    //Spring Security see this :
-//    @RequestMapping(value = "/login", method = RequestMethod.GET)
-//    public ModelAndView login(
-//            @RequestParam(value = "error", required = false) String error,
-//            @RequestParam(value = "logout", required = false) String logout) {
-//        Loggers.debugLogger.debug("in login controller");
-//        ModelAndView model = new ModelAndView();
-//        if (error != null) {
-//            model.addObject("error", "Invalid username and password!");
-//        }
-//
-//        if (logout != null) {
-//            model.addObject("msg", "You've been logged out successfully.");
-//        }
-//        model.setViewName("login");
-//
-//        return model;
-//
-//    }
-
 
 }

@@ -22,7 +22,7 @@ public class FbAuth {
             return redirectToFbAuthPage();
         User user = null;
         try {
-            OAuthClientRequest request = Facebook.getTokenRequestURI(code);
+            OAuthClientRequest request = FacebookConf.getTokenRequestURI(code);
 
             Loggers.debugLogger.debug(request.getLocationUri());
             //create OAuth client that uses custom http client under the hood
@@ -64,7 +64,7 @@ public class FbAuth {
     }
 
     private static ModelAndView redirectToFbAuthPage() {
-        return new ModelAndView("redirect:" + Facebook.getCodeRequestURI());
+        return new ModelAndView("redirect:" + FacebookConf.getCodeRequestURI());
     }
 
 }

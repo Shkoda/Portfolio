@@ -1,9 +1,6 @@
 package com.pelican.service;
 
-import com.pelican.entity.FB;
-import com.restfb.DefaultFacebookClient;
-import com.restfb.FacebookClient;
-import com.restfb.types.User;
+import com.pelican.entity.fb.FB;
 
 /**
  * Created by Nightingale on 17.08.2014.
