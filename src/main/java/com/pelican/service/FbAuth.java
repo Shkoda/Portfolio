@@ -36,6 +36,8 @@ public class FbAuth {
 
             String accessToken = oAuthResponse.getAccessToken();
 
+
+
             FacebookClient facebookClient = new DefaultFacebookClient(accessToken);
             user = facebookClient.fetchObject("me", User.class);
             return userData(user);
@@ -47,7 +49,7 @@ public class FbAuth {
     }
 
     private static ModelAndView userData(User user) {
-        ModelAndView model = new ModelAndView();
+        ModelAndView model = new ModelAndView("/general");
         model.addObject("first_name", user.getFirstName());
         model.addObject("last_name", user.getLastName());
         model.addObject("user", user);
