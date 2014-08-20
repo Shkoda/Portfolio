@@ -1,11 +1,7 @@
-<%@ page import="java.io.Console" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Nightingale
-  Date: 13.08.2014
-  Time: 12:02
-  To change this template use File | Settings | File Templates.
---%>
+/**
+ * Created by Nightingale on 20.08.2014.
+ */
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <html>
@@ -17,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Pelican Pet Project</title>
+    <title>Oops</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -41,53 +37,16 @@
 </head>
 <body>
 <header>
-    <h1>${title}</h1>
+    <h1>Ooops</h1>
 </header>
 <section>
-    <h1>Message : ${message}</h1>
+    <h1>Something goes wrong</h1>
 </section>
-<div>Get <a href="protected">protected</a> resource for admin.</div>
-<div>Get <a href="confidential">confidential</a> resource for superadmin.</div>
-
-<%
-    String authUri = (String) request.getAttribute("auth_uri");
-    if (authUri == null)
-        authUri = "fb/init_error";
-%>
-<div>Use <a href=<%=authUri%>> facebook login</a></div>
-
-<div>Go to <a href="index" >dashboard</a></div>
+<div>${message}</div>
+<div>Return to <a href="helloworld">start page</a></div>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

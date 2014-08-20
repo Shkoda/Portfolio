@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Created by Nightingale on 17.08.2014.
  */
 @Controller
+
 public class InfoController {
     @RequestMapping(value = {"/", "/index"}, method = {RequestMethod.GET})
     public ModelAndView indexPage() {

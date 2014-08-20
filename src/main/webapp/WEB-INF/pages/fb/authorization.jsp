@@ -1,13 +1,11 @@
-<%@ page import="java.io.Console" %>
 <%--
   Created by IntelliJ IDEA.
   User: Nightingale
-  Date: 13.08.2014
-  Time: 12:02
+  Date: 15.08.2014
+  Time: 12:35
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/"/>
@@ -17,7 +15,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Pelican Pet Project</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -37,61 +34,20 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <title>FB Auth successful</title>
 </head>
 <body>
-<header>
-    <h1>${title}</h1>
-</header>
-<section>
-    <h1>Message : ${message}</h1>
-</section>
-<div>Get <a href="protected">protected</a> resource for admin.</div>
-<div>Get <a href="confidential">confidential</a> resource for superadmin.</div>
+<h2>Facebook Authorized Page</h2>
 
-<%
-    String authUri = (String) request.getAttribute("auth_uri");
-    if (authUri == null)
-        authUri = "fb/init_error";
-%>
-<div>Use <a href=<%=authUri%>> facebook login</a></div>
 
-<div>Go to <a href="index" >dashboard</a></div>
+<div>User info: </div>
+
+<div>First name: ${first_name}</div>
+<div>Last name: ${last_name}</div>
+<div>Full info: ${user}</div>
+
+<div><a href="/helloworld">Return to helloworld page</a> </div>
+<div>Go to <a href="/index">main</a> </div>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
