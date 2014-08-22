@@ -14,7 +14,7 @@ public class FacebookConf {
     private static String APP_ID, APP_SECRET;
     private static String REDIRECT_URI;
     private static String AUTH_REQUEST;
-    public static final String FB_APP_CONFIG_PATH = "/facebook.properties";
+    public static final String FB_APP_CONFIG_PATH = "/application.properties";
 
     static {
         try {
