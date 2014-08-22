@@ -28,7 +28,7 @@ import java.util.List;
  */
 @Controller
 @SessionAttributes({"credentials", "user"})
-public class AppController {
+public class DefaultController {
 
     @ModelAttribute("credentials")
     public FBCredentials createCredentials() {
