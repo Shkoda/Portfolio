@@ -1,5 +1,6 @@
 package com.pelican.config;
 
+import com.pelican.utils.Loggers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
+import java.util.logging.Logger;
 
 /**
  * Created by Nightingale on 13.08.2014.
@@ -20,6 +22,7 @@ import javax.sql.DataSource;
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
@@ -33,11 +36,13 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/protected/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/confidential/**").access("hasRole('ROLE_SUPERADMIN')")
-                .and().formLogin().loginPage("/login").defaultSuccessUrl("/", false);
+                .antMatchers("/user/**").access("hasRole('ROLE_USER')")
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/user/welcome", false);
 
     }
+
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder;
     }

@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Pelican - Welcome</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -41,28 +41,21 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Please Sign In or
-                        <a href="/registration">Register New Account</a></h3>
+                    <h3 class="panel-title">Please Sign Up or
+                        <a href="/login">Login</a>
+                    </h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form" name='f' action="/login" method='POST'>
+                    <form role="form" name='f' action="/submit_registration" method='POST'>
                         <fieldset>
 
                             <c:if test="${param.error!=null}">
                                 <div class="alert alert-danger alert-dismissable">
                                     <button type="button" class="close" data-dismiss="alert"
                                             aria-hidden="true">&times;</button>
-                                    Invalid username or password
+                                        ${param.error}
                                 </div>
 
-                            </c:if>
-
-                            <c:if test="${param.logout!=null}">
-                                <div class="alert alert-info alert-dismissable">
-                                    <button type="button" class="close" data-dismiss="alert"
-                                            aria-hidden="true">&times;</button>
-                                    You have been logged out
-                                </div>
                             </c:if>
 
                             <div class="form-group">
@@ -73,14 +66,14 @@
                                 <input class="form-control" placeholder="Password" name="password" id="password"
                                        type='text' value="">
                             </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                </label>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Type your password again"
+                                       name="password_repeat" id="password_repeat" type='text' value="">
                             </div>
+
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <!-- Change this to a button or input when using this as a form -->
-                            <input name="submit" type="submit" value="Login" class="btn btn-lg btn-success btn-block"/>
+                            <input name="submit" type="submit" value="Create new account" class="btn btn-lg btn-info btn-block"/>
                         </fieldset>
                     </form>
                 </div>

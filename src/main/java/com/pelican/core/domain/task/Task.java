@@ -1,4 +1,4 @@
-package com.pelican.entity.task;
+package com.pelican.core.domain.task;
 
 import lombok.ToString;
 

@@ -40,7 +40,7 @@ public class DefaultController {
         return new User();
     }
 
-    @RequestMapping(value = {"/", "/fb_auth/auth_prompt"}, method = {RequestMethod.GET})
+    @RequestMapping(value = { "/fb_auth/auth_prompt"}, method = {RequestMethod.GET})
     public ModelAndView login(@ModelAttribute("credentials") FBCredentials credentials) {
         Loggers.debugLogger.debug("Login page :: "+credentials);
 
@@ -65,7 +65,7 @@ public class DefaultController {
             String accessToken = oAuthResponse.getAccessToken();
             credentials.setAccessToken(accessToken);
 
-            return new ModelAndView("redirect:/general");
+            return new ModelAndView("redirect:/my/general");
 
         } catch (OAuthProblemException | OAuthSystemException e) {
             e.printStackTrace();
@@ -74,7 +74,7 @@ public class DefaultController {
     }
 
 
-    @RequestMapping(value = {"/general"}, method = {RequestMethod.GET})
+    @RequestMapping(value = {"/my/general"}, method = {RequestMethod.GET})
     public ModelAndView generalPage(@ModelAttribute("credentials") FBCredentials credentials, @ModelAttribute("user") User user) {
         Loggers.debugLogger.debug("General page :: "+credentials);
 
@@ -112,6 +112,11 @@ public class DefaultController {
 
     private static ModelAndView redirectToFbAuthPage() {
         return new ModelAndView("redirect:" + FacebookConf.getCodeRequestURI());
+    }
+
+    @RequestMapping(value = "/user/welcome", method = RequestMethod.GET)
+    public ModelAndView authorizationSuccess(){
+        return new ModelAndView();
     }
 
 }

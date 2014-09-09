@@ -1,8 +1,6 @@
-package com.pelican.repositories;
+package com.pelican.persistence.repository;
 
-import com.pelican.entity.LoginInfo;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import com.pelican.persistence.LoginInfo;
 import org.springframework.data.repository.CrudRepository;
 
 import java.io.Serializable;

@@ -1,4 +1,4 @@
-package com.pelican.entity;
+package com.pelican.persistence;
 
 import lombok.Data;
 

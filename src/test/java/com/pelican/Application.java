@@ -1,15 +1,12 @@
 package com.pelican;
 
-import com.pelican.entity.LoginInfo;
-import com.pelican.repositories.LoginRepository;
+import com.pelican.persistence.LoginInfo;
+import com.pelican.persistence.repository.LoginRepository;
 import com.pelican.utils.MD5;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.List;
 
 /**
  * Created by Nightingale on 29.08.2014.

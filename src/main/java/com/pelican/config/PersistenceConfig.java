@@ -29,7 +29,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.pelican.repositories")
+@EnableJpaRepositories(basePackages = {"com.pelican.repositories", "com.pelican.persistence.repository", "com.pelican.persistence.domain"})
 public class PersistenceConfig {
 
     @Autowired
@@ -54,7 +54,7 @@ public class PersistenceConfig {
 
         factory.setDataSource(dataSource());
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("com.pelican.entity", "com.pelican.repositories", "com.pelican.service");
+        factory.setPackagesToScan("com.pelican.persistence", "com.pelican.persistence.repository", "com.pelican.persistence.domain");
 
         Properties jpaProperties = new Properties();
         jpaProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
