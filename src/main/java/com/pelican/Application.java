@@ -43,7 +43,7 @@ public class Application {
         System.out.println();
 
         // fetch customers by last name
-        LoginInfo bauers = repository.findByLogin("qwerty");
+        LoginInfo bauers = repository.findByLogin("123");
         System.out.println("Customer found with findByLastName('Bauer'):");
         System.out.println(bauers);
         context.close();

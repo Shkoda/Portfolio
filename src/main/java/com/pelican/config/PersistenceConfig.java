@@ -1,4 +1,3 @@
-
 package com.pelican.config;
 
 import com.pelican.utils.Loggers;
@@ -28,60 +27,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.pelican.repositories")
 public class PersistenceConfig {
-
-//    @Autowired
-//    private Environment env;
-//
-//    @Bean
-//    public LocalSessionFactoryBean sessionFactory() {
-//        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-//        sessionFactory.setDataSource(restDataSource());
-////        sessionFactory.setPackagesToScan(new String[] { "org.baeldung.spring.persistence.model" });
-//        sessionFactory.setHibernateProperties(hibernateProperties());
-//
-//        return sessionFactory;
-//    }
-//
-//    @Bean
-//    public DataSource restDataSource() {
-//        BasicDataSource dataSource = new BasicDataSource();
-//        dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
-//        dataSource.setUrl(env.getProperty("jdbc.url"));
-//        dataSource.setUsername(env.getProperty("jdbc.user"));
-//        dataSource.setPassword(env.getProperty("jdbc.pass"));
-//
-//        return dataSource;
-//    }
-//
-//    @Bean
-//    @Autowired
-//    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
-//        HibernateTransactionManager txManager = new HibernateTransactionManager();
-//        txManager.setSessionFactory(sessionFactory);
-//
-//        return txManager;
-//    }
-//
-//    @Bean
-//    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-//        return new PersistenceExceptionTranslationPostProcessor();
-//    }
-//
-//    Properties hibernateProperties() {
-//        return new Properties() {
-//            {
-//                setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-//                setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
-//                setProperty("hibernate.globally_quoted_identifiers", "true");
-//            }
-//        };
-//    }
-//------------------------------
 
     @Autowired
     private Environment env;
@@ -130,29 +79,8 @@ public class PersistenceConfig {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-//    Properties hibernateProperties() {
-//        return new Properties() {
-//            {
-//                setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-//                setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
-//                setProperty("hibernate.globally_quoted_identifiers", "true");
-//            }
-//        };
-//    }
-//
-//    @Bean
-//    public LocalSessionFactoryBean sessionFactory() {
-//        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-//        sessionFactory.setDataSource(dataSource());
-//        sessionFactory.setPackagesToScan("com.pelican.entity");
-//        sessionFactory.setHibernateProperties(hibernateProperties());
-//
-//        return sessionFactory;
-//    }
-
     @Bean
     public DataSource dataSource() {
-        Loggers.debugLogger.debug("creating data source");
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
         dataSource.setUrl(env.getProperty("jdbc.url"));
