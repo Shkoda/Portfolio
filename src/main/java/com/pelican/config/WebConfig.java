@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan({"com.pelican.config", "com.pelican.controllers"})
+@ComponentScan({"com.pelican.config", "com.pelican.controllers", "com.pelican.service", "com.pelican.repositories", "com.pelican.entity"})
 //@Import({ AppSecurityConfig.class })
 public class WebConfig extends WebMvcConfigurerAdapter {
 

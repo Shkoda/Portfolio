@@ -1,4 +1,4 @@
-package com.pelican.service;
+package com.pelican.service.fb;
 
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
 import org.apache.oltu.oauth2.common.OAuthProviderType;

@@ -34,5 +34,8 @@ public class MD5 {
     public static void main(String[] args) {
         String testPass = "123";
         System.out.println(testPass+"\n"+getHash(testPass));
+
+        String testPass2 = "qwerty";
+        System.out.println(testPass2+"\n"+getHash(testPass2));
     }
 }

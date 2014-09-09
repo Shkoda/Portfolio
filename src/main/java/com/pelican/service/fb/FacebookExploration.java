@@ -1,4 +1,4 @@
-package com.pelican.service;
+package com.pelican.service.fb;
 
 import com.pelican.entity.fb.FB;
 

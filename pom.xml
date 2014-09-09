@@ -12,9 +12,11 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-data-jpa.version>1.4.1.RELEASE</spring-data-jpa.version>
-        <hibernate.version>4.2.6.Final</hibernate.version>
+        <hibernate.version>4.3.6.Final</hibernate.version>
         <jackson-json.version>2.3.1</jackson-json.version>
         <commons-dbcp.version>1.2.2</commons-dbcp.version>
+        <junit.version>4.11</junit.version>
+        <!--<start-class>com.pelican.Application</start-class>-->
     </properties>
 
     <repositories>
@@ -24,6 +26,12 @@
             <url>http://visural-common.googlecode.com/svn/trunk/visural-common/maven/</url>
         </repository>
     </repositories>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.1.5.RELEASE</version>
+    </parent>
 
     <dependencies>
         <!-- servlets -->
@@ -52,14 +60,25 @@
             <version>4.0.5.RELEASE</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>1.1.5.RELEASE</version>
+        </dependency>
+
 
         <!-- Spring Data JPA dependencies -->
-
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
-            <version>${spring-data-jpa.version}</version>
+            <version>1.6.2.RELEASE</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+
 
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -165,7 +184,31 @@
             <artifactId>postgresql</artifactId>
             <version>9.1-901-1.jdbc4</version>
         </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.181</version>
+        </dependency>
 
+        <!--test-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.0.6.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.12.1.GA</version>
+        </dependency>
 
     </dependencies>
     <build>
