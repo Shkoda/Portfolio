@@ -1,5 +1,8 @@
 package com.pelican.config;
 
+import com.pelican.persistence.repository.LoginRepository;
+import com.pelican.service.LoginService;
+import com.pelican.service.RepoLoginService;
 import com.pelican.utils.Loggers;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
@@ -101,4 +104,7 @@ public class PersistenceConfig {
         dataSourceInitializer.setEnabled(Boolean.parseBoolean(initDatabase));
         return dataSourceInitializer;
     }
+
+
+
 }

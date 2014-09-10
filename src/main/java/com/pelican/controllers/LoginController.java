@@ -2,8 +2,16 @@ package com.pelican.controllers;
 
 import com.pelican.persistence.LoginInfo;
 import com.pelican.persistence.repository.LoginRepository;
+import com.pelican.service.LoginService;
+import com.pelican.service.RepoLoginService;
 import com.pelican.utils.Loggers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,17 +30,36 @@ public class LoginController {
     private PasswordEncoder encoder;
 
     @Autowired
+    @Qualifier(value = "loginService")
+    private LoginService loginService;
+
+    @Autowired
     private LoginRepository loginRepository;
+
+    @Autowired
+    private Environment env;
 
     @RequestMapping(value = {"/", "/login"}, method = {RequestMethod.GET})
     public ModelAndView loginPrompt() {
+        Loggers.debugLogger.debug("in login controller");
         return new ModelAndView("login");
     }
+
+//    @RequestMapping(value = "get_user_name", method = RequestMethod.GET)
+//    public String getUserName(){
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//      return user.getUsername(); //get logged in username
+//    }
 
     @RequestMapping(value = {"/registration"}, method = {RequestMethod.GET})
     public ModelAndView registerPrompt() {
         return new ModelAndView();
     }
+
+//    @RequestMapping(value = {"/submit_registration"}, method = {RequestMethod.GET})
+//    public ModelAndView refreshRegisterSubmit(){
+//        return new ModelAndView("redirect:user/welcome");
+//    }
 
     @RequestMapping(value = {"/submit_registration"}, method = {RequestMethod.POST})
     public ModelAndView registerCheckLogin(@RequestParam(value = "username", required = false) String login,
@@ -50,9 +77,49 @@ public class LoginController {
         if (loginRepository.findByLogin(login) != null)
             return new ModelAndView("redirect:registration").addObject("error", "Login is already in use");
 
-
-        loginRepository.save(new LoginInfo(login, encoder.encode(pass)));
-
+        LoginInfo loginInfo = new LoginInfo(login, encoder.encode(pass));
+//        loginRepository.saveAndFlush(new LoginInfo(login, encoder.encode(pass)));
+        loginService.save(loginInfo);
         return new ModelAndView("redirect:user/welcome").addObject("login", login);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

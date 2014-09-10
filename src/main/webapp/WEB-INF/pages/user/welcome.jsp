@@ -1,36 +1,29 @@
-<%@ page import="java.io.Console" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Nightingale
-  Date: 13.08.2014
-  Time: 12:02
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
 
-<html>
 <head>
-    <%--<base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/"/>--%>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Welcome</title>
+
+    <title>Pelican - Welcome</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="../../../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <link href="../../../css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../src/main/webapp/resourses/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet"
-          type="text/css">
+    <link href="../../../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,19 +34,26 @@
 
 </head>
 <body>
-<header>
-    <h1>Welcome to Pelican Pet Project!</h1>
-</header>
-<section>
-    <%
 
-        String login = (String) request.getAttribute("login");
-    %>
-    <h1>Message : You are authorized as <%=login%>
-    </h1>
-</section>
+    <header>
+        <h1>Welcome to Pelican Pet Project!</h1>
+    </header>
+    <section>
+        <h1>You are authorized as ${pageContext.request.userPrincipal.name}
+        </h1>
+    </section>
 
+<!-- jQuery Version 1.11.0 -->
+<script src="../../../js/jquery-1.11.0.js"></script>
 
+<!-- Bootstrap Core JavaScript -->
+<script src="../../../js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../../../js/plugins/metisMenu/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="../../../js/sb-admin-2.js"></script>
 </body>
 </html>
 
