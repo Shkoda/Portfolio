@@ -2,7 +2,6 @@ package com.pelican.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 
 /**
  * Created by Nightingale on 20.08.2014.

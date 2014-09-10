@@ -8,4 +8,6 @@ import com.pelican.persistence.LoginInfo;
 public interface LoginService {
     void save(LoginInfo info);
 
+    boolean isAlreadyRegistered(String login);
+
 }

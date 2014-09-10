@@ -1,4 +1,3 @@
-<%@ page import="java.io.Console" %>
 <%--
   Created by IntelliJ IDEA.
   User: Nightingale

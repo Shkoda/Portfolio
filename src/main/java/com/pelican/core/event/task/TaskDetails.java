@@ -1,7 +1,6 @@
 package com.pelican.core.event.task;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 /**
  * Created by Nightingale on 09.09.2014.

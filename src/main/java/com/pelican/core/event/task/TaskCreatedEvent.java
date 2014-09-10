@@ -1,6 +1,5 @@
 package com.pelican.core.event.task;
 
-import com.pelican.core.domain.task.Task;
 import com.pelican.core.event.CreatedEvent;
 import lombok.ToString;
 

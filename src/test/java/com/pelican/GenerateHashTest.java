@@ -1,6 +1,5 @@
 package com.pelican;
 
-import com.pelican.utils.MD5;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
