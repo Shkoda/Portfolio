@@ -1,8 +1,13 @@
 package com.pelican.config;
 
+import com.pelican.utils.Loggers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
+import org.springframework.security.access.vote.RoleHierarchyVoter;
+import org.springframework.security.access.vote.RoleVoter;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -26,22 +31,40 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication().dataSource(dataSource)
                 .passwordEncoder(passwordEncoder())
                 .usersByUsernameQuery("select login,password_hash, enabled from users.auth where login=?")
-                .authoritiesByUsernameQuery("select login, role from users.roles where login=?");
+                .authoritiesByUsernameQuery("SELECT  A.login, R.name FROM (SELECT login, role_id FROM users.auth WHERE login = ?) AS A LEFT JOIN (SELECT id, name FROM users.roles) AS R ON (A.role_id = R.id)");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/protected/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/protected/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')")
                 .antMatchers("/confidential/**").access("hasRole('ROLE_SUPERADMIN')")
-                .antMatchers("/user/**").access("hasRole('ROLE_USER')")
+                .antMatchers("/user/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')")
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/user/welcome", false);
 
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        PasswordEncoder encoder = new BCryptPasswordEncoder();
-        return encoder;
+        return new BCryptPasswordEncoder();
     }
+
+//    @Bean
+//    public RoleHierarchy roleHierarchy() {
+//        Loggers.debugLogger.debug("call roleHierarchy()");
+//        RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
+//        roleHierarchy.setHierarchy(
+//                "SUPERADMIN > ADMIN " +
+//                "ADMIN > USER  " +
+//                "USER > GUEST");
+//        return roleHierarchy;
+//    }
+//
+//    @Bean
+//    public RoleVoter roleVoter() {
+//        Loggers.debugLogger.debug("call roleVoter()");
+//        return new RoleHierarchyVoter(roleHierarchy());
+//    }
+
+
 }

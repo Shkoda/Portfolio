@@ -17,8 +17,7 @@ public class RepoLoginService implements LoginService {
     @Override
     @Transactional
     public void save(LoginInfo info) {
-        Loggers.debugLogger.debug(" >>>>>> saving " + info);
-        loginRepository.save(info);
+        loginRepository.saveAndFlush(info);
 
 //        List<LoginInfo> all = loginRepository.findAll();          //todo why causes build fail?
 //        all.forEach(Loggers.debugLogger::debug);

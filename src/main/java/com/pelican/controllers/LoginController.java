@@ -3,6 +3,7 @@ package com.pelican.controllers;
 import com.pelican.persistence.LoginInfo;
 import com.pelican.service.LoginService;
 import com.pelican.utils.Loggers;
+import com.pelican.utils.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.env.Environment;
@@ -57,6 +58,7 @@ public class LoginController {
 
         LoginInfo loginInfo = new LoginInfo(login, encoder.encode(pass));
         loginService.save(loginInfo);
+        SecurityUtil.logInUser(login, pass);
         return new ModelAndView("redirect:user/welcome").addObject("login", login);
     }
 }

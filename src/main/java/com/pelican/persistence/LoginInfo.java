@@ -27,4 +27,11 @@ public class LoginInfo {
         this.passwordHash = passwordHash;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
 }

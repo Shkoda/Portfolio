@@ -19,7 +19,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Configuration
 @PropertySource(value = {"classpath:application.properties"})
 @EnableScheduling
-//@EnableAspectJAutoProxy
 @EnableCaching
 @ComponentScan({"com.pelican.config", "com.pelican.controllers", "com.pelican.service", "com.pelican.repositories"})
 public class AppConfig {
