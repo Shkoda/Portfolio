@@ -7,12 +7,16 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * Created by Nightingale on 10.09.2014.
  */
 @Configuration
 @ComponentScan({"com.pelican.service", "com.pelican.persistence.repository"})
+@EnableJpaRepositories("com.pelican.persistence.repository")
+@EnableTransactionManagement
 public class ServiceConfig {
     @Bean
     @Qualifier(value = "loginService")

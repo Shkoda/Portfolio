@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "users.auth")
+@Table(name = "auth", schema = "users")
 public class LoginInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

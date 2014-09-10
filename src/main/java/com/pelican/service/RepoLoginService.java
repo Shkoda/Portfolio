@@ -5,6 +5,7 @@ import com.pelican.persistence.repository.LoginRepository;
 import com.pelican.utils.Loggers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -14,6 +15,7 @@ public class RepoLoginService implements LoginService {
     private LoginRepository loginRepository;
 
     @Override
+    @Transactional
     public void save(LoginInfo info) {
         Loggers.debugLogger.debug(" >>>>>> saving " + info);
         loginRepository.save(info);
