@@ -31,7 +31,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication().dataSource(dataSource)
                 .passwordEncoder(passwordEncoder())
                 .usersByUsernameQuery("select login,password_hash, enabled from users.auth where login=?")
-                .authoritiesByUsernameQuery("SELECT  A.login, R.name FROM (SELECT login, role_id FROM users.auth WHERE login = ?) AS A LEFT JOIN (SELECT id, name FROM users.roles) AS R ON (A.role_id = R.id)");
+                .authoritiesByUsernameQuery("SELECT  A.login, R.role FROM (SELECT login, role_id FROM users.auth WHERE login = ?) AS A LEFT JOIN (SELECT id, role FROM users.roles) AS R ON (A.role_id = R.id)");
     }
 
     @Override

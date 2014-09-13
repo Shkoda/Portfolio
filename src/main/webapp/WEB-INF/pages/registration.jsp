@@ -33,7 +33,6 @@
     <![endif]-->
 
 </head>
-
 <body>
 
 <div class="container">
@@ -46,7 +45,7 @@
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form" name='f' action="/submit_registration" method='POST'>
+                    <form:form action="/submit_registration" commandName="registrationForm" method='POST'>
                         <fieldset>
 
                             <c:if test="${param.error!=null}">
@@ -68,14 +67,14 @@
                             </div>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Type your password again"
-                                       name="password_repeat" id="password_repeat" type='text' value="">
+                                       name="passwordDuplicate" id="passwordDuplicate" type='text' value="">
                             </div>
 
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <!-- Change this to a button or input when using this as a form -->
-                            <input name="submit" type="submit" value="Create new account" class="btn btn-lg btn-info btn-block"/>
+                            <input name="submit" type="submit" value="Create new account" class="btn btn-lg btn-info btn-block" onsubmit="return validateForm()"/>
                         </fieldset>
-                    </form>
+                    </form:form>
                 </div>
             </div>
         </div>

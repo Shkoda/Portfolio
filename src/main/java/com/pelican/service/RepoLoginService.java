@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class RepoLoginService implements LoginService {
-
     @Autowired
     private LoginRepository loginRepository;
 
@@ -18,15 +17,10 @@ public class RepoLoginService implements LoginService {
     @Transactional
     public void save(LoginInfo info) {
         loginRepository.saveAndFlush(info);
-
-//        List<LoginInfo> all = loginRepository.findAll();          //todo why causes build fail?
-//        all.forEach(Loggers.debugLogger::debug);
-
     }
 
     @Override
     public boolean isAlreadyRegistered(String login) {
         return loginRepository.findByLogin(login) != null;
     }
-
 }
