@@ -56,6 +56,10 @@ public class Task {
         return ownerId;
     }
 
+    public int getId() {
+        return id;
+    }
+
     //
 //    public static Task fromDetails(TaskDetails details) {
 //        Task task = new Task();

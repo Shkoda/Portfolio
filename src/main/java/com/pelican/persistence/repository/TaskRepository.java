@@ -12,4 +12,6 @@ import java.util.List;
 */
 public interface TaskRepository extends JpaRepository<Task, Serializable> {
     List<Task> findByOwnerId(int ownerId);
+
+    Task findByIdAndOwnerId(int id, int ownerId);
 }

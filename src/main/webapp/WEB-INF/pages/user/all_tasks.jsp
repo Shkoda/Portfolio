@@ -36,59 +36,67 @@
 <body>
 
 <div class="row">
-<div class="col-lg-12">
-<div class="panel panel-default">
-<div class="panel-heading">
-    Task List
-</div>
-<!-- /.panel-heading -->
-<div class="panel-body">
-<div class="table-responsive">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Task List
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive">
 
-<table class="table table-striped table-bordered table-hover" id="dataTables-example">
-<thead>
-<tr>
-    <th>Description</th>
-    <th>Created at</th>
-    <th>Start time</th>
-    <th>Expiration time</th>
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Created at</th>
+                            <th>Start time</th>
+                            <th>Expiration time</th>
 
-</tr>
-</thead>
-<tbody>
-<%
-    List<Task> list = (List<Task>) request.getAttribute("tasks");
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <%
+                            List<Task> list = (List<Task>) request.getAttribute("tasks");
 
-    for (int i = 0; i < list.size(); ++i) {
-        Task task = list.get(i);
-%>
-<tr class="odd gradeX">
-    <td><%=task.getDescription()%></td>
-    <td><%=task.getCreatedAt()%></td>
-    <td><%=task.getStartAt()%></td>
-    <td><%=task.getFinishAt()%></td>
+                            for (int i = 0; i < list.size(); ++i) {
+                                Task task = list.get(i);
+                        %>
+                        <tr class="odd gradeX" ondblclick=redirectToTaskPage(<%=task.getId()%>)>
+                            <td><%=task.getDescription()%>
+                            </td>
+                            <td><%=task.getCreatedAt()%>
+                            </td>
+                            <td><%=task.getStartAt()%>
+                            </td>
+                            <td><%=task.getFinishAt()%>
+                            </td>
 
-</tr>
+                        </tr>
 
-<%
-    }
-%>
+                        <%
+                            }
+                        %>
 
-</tbody>
-</table>
+                        </tbody>
+                    </table>
 
-</div>
+                </div>
 
-</div>
-<!-- /.panel-body -->
-</div>
-<!-- /.panel -->
-</div>
-<!-- /.col-lg-12 -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
 </div>
 
 </body>
-
+<script>
+    function redirectToTaskPage(taskId) {
+        window.location="/user/task?task_id=" + taskId
+    }
+</script>
 <!-- jQuery Version 1.11.0 -->
 <script src="../../../js/jquery-1.11.0.js"></script>
 
@@ -106,13 +114,12 @@
 <script src="../../../js/plugins/dataTables/dataTables.bootstrap.js"></script>
 
 
-
 <!-- Custom Theme JavaScript -->
 <script src="../../../js/sb-admin-2.js"></script>
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#dataTables-example').dataTable();
     });
 </script>

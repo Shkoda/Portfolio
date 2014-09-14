@@ -6,9 +6,7 @@ import com.pelican.utils.Loggers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
@@ -19,7 +17,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/user")
-public class PersonalController {
+public class TaskController {
     @Autowired
     @Qualifier(value = "taskService")
     private TaskService taskService;
@@ -31,29 +29,23 @@ public class PersonalController {
         List<Task> tasks = taskService.getTasks(login);
         for (Task task : tasks)         //todo !! эта тварь не понимает forEach...
             System.out.println(" >>>>>>>>>>>>>>>> " + task);
-//        return "user/dashboard";
     }
 
-//    @RequestMapping(value = "/all_tasks", method = RequestMethod.GET)
-//    public void allTasksPage(){
-//
-//    }
-
-
     @RequestMapping(value = "/all_tasks", method = RequestMethod.GET)
-    public ModelAndView tasks(Principal principal){
+    public ModelAndView tasks(Principal principal) {
         List<Task> tasks = taskService.getTasks(principal.getName());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("tasks", tasks);
         return modelAndView;
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/request_tasks", method = RequestMethod.GET)
-    public List<Task> requestTasks(Principal principal){
-        List<Task> tasks = taskService.getTasks(principal.getName());
-        return tasks;
+    @RequestMapping(value = "/task")
+    public Task task(@RequestParam("task_id") int taskId, Principal principal) {
+       return taskService.getTask(principal.getName(), taskId);
+
     }
+
+
 }
 
 

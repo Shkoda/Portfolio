@@ -12,4 +12,8 @@ public interface TaskService {
     List<Task> getTasks(Integer ownerId);
 
     List<Task> getTasks(String login);
+
+    Task getTask(Integer ownerId, int taskId);
+
+    Task getTask(String login, int taskId);
 }
