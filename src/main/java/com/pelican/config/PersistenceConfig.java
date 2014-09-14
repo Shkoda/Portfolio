@@ -26,7 +26,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = {"com.pelican.repositories", "com.pelican.persistence.repository", "com.pelican.persistence.domain"})
+@EnableJpaRepositories(basePackages = {"com.pelican.persistence"})
 public class PersistenceConfig {
 
     @Autowired

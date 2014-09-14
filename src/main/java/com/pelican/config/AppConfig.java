@@ -20,27 +20,19 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @PropertySource(value = {"classpath:application.properties"})
 @EnableScheduling
 @EnableCaching
-@ComponentScan({"com.pelican.config", "com.pelican.controllers", "com.pelican.service", "com.pelican.repositories"})
+@ComponentScan({"com.pelican.config", "com.pelican.controllers", "com.pelican.service", "com.pelican.persistence"})
 public class AppConfig {
-
     @Autowired
     private Environment env;
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer placeHolderConfigurer() {
-        Loggers.debugLogger.debug("srart placeHolderConfigurer()");
-        PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer = new PropertySourcesPlaceholderConfigurer();
-        Loggers.debugLogger.debug("done placeHolderConfigurer()");
-        return propertySourcesPlaceholderConfigurer;
+        return new PropertySourcesPlaceholderConfigurer();
     }
 
     @Bean
     public CacheManager cacheManager() {
-        Loggers.debugLogger.debug("start cacheManager()");
-        ConcurrentMapCacheManager concurrentMapCacheManager = new ConcurrentMapCacheManager();
-        Loggers.debugLogger.debug("done cacheManager()");
-        return concurrentMapCacheManager;
+        return new ConcurrentMapCacheManager();
     }
-
 
 }

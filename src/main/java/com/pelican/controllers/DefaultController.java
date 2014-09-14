@@ -114,9 +114,9 @@ public class DefaultController {
         return new ModelAndView("redirect:" + FacebookConf.getCodeRequestURI());
     }
 
-    @RequestMapping(value = "/user/welcome", method = RequestMethod.GET)
-    public ModelAndView authorizationSuccess(){
-        return new ModelAndView();
-    }
+//    @RequestMapping(value = "/user/welcome", method = RequestMethod.GET)
+//    public ModelAndView authorizationSuccess(){
+//        return new ModelAndView();
+//    }
 
 }

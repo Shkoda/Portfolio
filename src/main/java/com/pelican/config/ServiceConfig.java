@@ -2,6 +2,8 @@ package com.pelican.config;
 
 import com.pelican.service.LoginService;
 import com.pelican.service.RepoLoginService;
+import com.pelican.service.TaskService;
+import com.pelican.service.TaskServiceImpl;
 import com.pelican.utils.Loggers;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -14,14 +16,19 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * Created by Nightingale on 10.09.2014.
  */
 @Configuration
-@ComponentScan({"com.pelican.service", "com.pelican.persistence.repository"})
+@ComponentScan({"com.pelican.service", "com.pelican.persistence.repository", "com.pelican.persistence.domain"})
 @EnableJpaRepositories("com.pelican.persistence.repository")
 @EnableTransactionManagement
 public class ServiceConfig {
     @Bean
     @Qualifier(value = "loginService")
-    public LoginService createLoginRepository(){
-        Loggers.debugLogger.debug("creating login service...");
+    public LoginService loginService() {
         return new RepoLoginService();
     }
+    @Bean
+    @Qualifier(value = "taskService")
+    public TaskService taskService() {
+        return new TaskServiceImpl();
+    }
+
 }
