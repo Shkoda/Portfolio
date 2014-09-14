@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan({"com.pelican.config", "com.pelican.controllers", "com.pelican.service", "com.pelican.repositories", "com.pelican.entity"})
+@ComponentScan({"com.pelican.config", "com.pelican.controllers", "com.pelican.service", "com.pelican.repositories"})
 //@Import({ AppSecurityConfig.class })
 public class WebConfig extends WebMvcConfigurerAdapter {
 
@@ -56,11 +56,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("*.woff").addResourceLocations("/font-awesome-4.1.0/fonts", "/fonts");
         registry.addResourceHandler("*.less").addResourceLocations("/font-awesome-4.1.0/less","/less");
         registry.addResourceHandler("*.scss").addResourceLocations("/font-awesome-4.1.0/scss");
-
-//        registry.addResourceHandler("*.png").addResourceLocations("/css/");
-//        registry.addResourceHandler("*.jpg").addResourceLocations("/css/");
-//        registry.addResourceHandler("/img/**").addResourceLocations("/img/").setCachePeriod(31556926);
-//        registry.addResourceHandler("/js/**").addResourceLocations("/js/").setCachePeriod(31556926);
     }
 
     @Override

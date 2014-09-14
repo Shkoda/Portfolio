@@ -62,7 +62,7 @@ public class LoginController {
     }
 
     private ModelAndView redirectToPersonalPage() {
-        return new ModelAndView("redirect:user/welcome");
+        return new ModelAndView("redirect:user/dashboard");
     }
 
 }

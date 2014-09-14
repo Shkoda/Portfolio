@@ -51,7 +51,7 @@ public class PersistenceConfig {
 
         factory.setDataSource(dataSource());
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("com.pelican.persistence", "com.pelican.persistence.repository", "com.pelican.persistence.domain");
+        factory.setPackagesToScan("com.pelican.persistence");
 
         Properties jpaProperties = new Properties();
         jpaProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));

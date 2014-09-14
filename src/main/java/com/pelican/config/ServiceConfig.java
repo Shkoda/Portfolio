@@ -16,9 +16,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * Created by Nightingale on 10.09.2014.
  */
 @Configuration
-@ComponentScan({"com.pelican.service", "com.pelican.persistence.repository", "com.pelican.persistence.domain"})
-@EnableJpaRepositories("com.pelican.persistence.repository")
-@EnableTransactionManagement
+//@ComponentScan({"com.pelican.service", "com.pelican.persistence", "com.pelican.persistence.domain"})
+//@EnableJpaRepositories("com.pelican.persistence.repository")
+//@EnableTransactionManagement
 public class ServiceConfig {
     @Bean
     @Qualifier(value = "loginService")
