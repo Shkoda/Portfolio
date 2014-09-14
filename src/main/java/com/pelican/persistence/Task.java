@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
 * Created by Nightingale on 09.09.2014.
@@ -20,19 +21,39 @@ public class Task {
     @Column(name = "id", nullable = false, unique = true)
     private int id;
     @Column(name = "description", nullable = false)
-    public String description;
-//    @Column(name = "creation_time")
-//    private LocalDateTime createdAt;
-//    @Column(name = "start_time")
-//    private LocalDateTime startAt;
-//    @Column(name = "expiration_time")
-//    private LocalDateTime finishAt;
+    private String description;
+    @Column(name = "creation_time")
+    private Date createdAt;
+    @Column(name = "start_time")
+    private Date startAt;
+    @Column(name = "expiration_time")
+    private Date finishAt;
     @Column(name = "owner_id", nullable = false)
     private int ownerId;
 
     public Task(String description, int ownerId) {
         this.description = description;
         this.ownerId = ownerId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public Date getStartAt() {
+        return startAt;
+    }
+
+    public Date getFinishAt() {
+        return finishAt;
+    }
+
+    public int getOwnerId() {
+        return ownerId;
     }
 
     //

@@ -20,73 +20,75 @@
     <!-- MetisMenu CSS -->
     <link href="../../../css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
 
-    <!-- Timeline CSS -->
-    <link href="../../../css/plugins/timeline.css" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link href="../../../css/plugins/dataTables.bootstrap.css" rel="stylesheet">
+
 
     <!-- Custom CSS -->
     <link href="../../../css/sb-admin-2.css" rel="stylesheet">
 
-    <!-- Morris Charts CSS -->
-    <link href="../../../css/plugins/morris.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="../../../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
-    <script src="http://d3js.org/d3.v3.min.js"></script>
 </head>
 
 <body>
 
+<div class="row">
+<div class="col-lg-12">
+<div class="panel panel-default">
+<div class="panel-heading">
+    Task List
+</div>
+<!-- /.panel-heading -->
+<div class="panel-body">
+<div class="table-responsive">
 
-Tasks:
+<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+<thead>
+<tr>
+    <th>Description</th>
+    <th>Created at</th>
+    <th>Start time</th>
+    <th>Expiration time</th>
 
-<br>
-<% List<Task> list = (List<Task>) request.getAttribute("tasks");
-%>
-
+</tr>
+</thead>
+<tbody>
 <%
-    for (int i = 0; i < list.size(); ++i) {
-%>
-<li>
-    <%= list.get(i) %>
+    List<Task> list = (List<Task>) request.getAttribute("tasks");
 
-</li>
+    for (int i = 0; i < list.size(); ++i) {
+        Task task = list.get(i);
+%>
+<tr class="odd gradeX">
+    <td><%=task.getDescription()%></td>
+    <td><%=task.getCreatedAt()%></td>
+    <td><%=task.getStartAt()%></td>
+    <td><%=task.getFinishAt()%></td>
+
+</tr>
+
 <%
     }
 %>
 
+</tbody>
+</table>
 
-<%--<button id="generate-btn" type="button" class="btn btn-primary" onclick="request_tasks()"--%>
-        <%--data-dismiss="modal">Request tasks--%>
-<%--</button>--%>
+</div>
 
+</div>
+<!-- /.panel-body -->
+</div>
+<!-- /.panel -->
+</div>
+<!-- /.col-lg-12 -->
+</div>
 
 </body>
 
-<script>
-//    function request_tasks() {
-//        d3.text("/user/request_tasks")
-//                .header("Content-type", "application/json")
-//                .get(function (error, text) {
-//                    var tasks = JSON.parse(text);
-//                    console.log(tasks);
-//
-//                    for (i = 0; i < tasks.length; ++i) {
-//                        console.log(tasks.get(i));
-//                        $("#task-description").html("<strong>Task: </strong>" + tasks.get(i));
-//                    }
-//                    $("#task-description-block").slideDown(400);
-//                });
-//    }
-
-</script>
 <!-- jQuery Version 1.11.0 -->
 <script src="../../../js/jquery-1.11.0.js"></script>
 
@@ -96,12 +98,23 @@ Tasks:
 <!-- Metis Menu Plugin JavaScript -->
 <script src="../../../js/plugins/metisMenu/metisMenu.min.js"></script>
 
-<!-- Morris Charts JavaScript -->
-<script src="../../../js/plugins/morris/raphael.min.js"></script>
-<script src="../../../js/plugins/morris/morris.min.js"></script>
-<script src="../../../js/plugins/morris/morris-data.js"></script>
 
 <!-- Custom Theme JavaScript -->
 <script src="../../../js/sb-admin-2.js"></script>
+<!-- DataTables JavaScript -->
+<script src="../../../js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="../../../js/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+
+
+<!-- Custom Theme JavaScript -->
+<script src="../../../js/sb-admin-2.js"></script>
+
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script>
+    $(document).ready(function() {
+        $('#dataTables-example').dataTable();
+    });
+</script>
 
 </html>
