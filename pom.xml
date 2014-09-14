@@ -16,6 +16,13 @@
         <jackson-json.version>2.3.1</jackson-json.version>
         <commons-dbcp.version>1.2.2</commons-dbcp.version>
         <junit.version>4.11</junit.version>
+
+        <slf4j-api-version>1.7.2</slf4j-api-version>
+        <log4j-over-slf4j-version>1.7.2</log4j-over-slf4j-version>
+        <jcl-over-slf4j-version>1.7.2</jcl-over-slf4j-version> <!-- no problem to have yet another slf4j bridge -->
+        <logback-core-version>1.0.7</logback-core-version>
+        <logback-classic-version>1.0.7</logback-classic-version>
+        <hibernate-entitymanager-version>4.1.7.Final</hibernate-entitymanager-version> <!-- our logging problem child -->
         <!--<start-class>com.pelican.Application</start-class>-->
     </properties>
 
@@ -225,7 +232,32 @@
             <version>1.8.3</version>
         </dependency>
 
-
+        <!-- logs -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${jcl-over-slf4j-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>${log4j-over-slf4j-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback-core-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-classic-version}</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>portfolio</finalName>

@@ -3,20 +3,17 @@ package com.pelican.config;
 import com.pelican.service.LoginService;
 import com.pelican.service.RepoLoginService;
 import com.pelican.service.TaskService;
-import com.pelican.service.TaskServiceImpl;
-import com.pelican.utils.Loggers;
+import com.pelican.service.TaskPgService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * Created by Nightingale on 10.09.2014.
  */
 @Configuration
-//@ComponentScan({"com.pelican.service", "com.pelican.persistence", "com.pelican.persistence.domain"})
+//@ComponentScan({"com.pelican.service", "com.pelican.persistence"})
 //@EnableJpaRepositories("com.pelican.persistence.repository")
 //@EnableTransactionManagement
 public class ServiceConfig {
@@ -28,7 +25,7 @@ public class ServiceConfig {
     @Bean
     @Qualifier(value = "taskService")
     public TaskService taskService() {
-        return new TaskServiceImpl();
+        return new TaskPgService();
     }
 
 }

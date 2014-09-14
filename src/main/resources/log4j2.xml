@@ -13,6 +13,7 @@
 
     </appenders>
     <Loggers>
+
         <Root level="all" additivity="false">
             <AppenderRef ref="consoleDebug"/>
         </Root>
@@ -24,7 +25,6 @@
         <Logger name="debug_logger" additivity="false" level="debug">
             <AppenderRef ref="consoleDebug"/>
         </Logger>
-
 
 
     </Loggers>

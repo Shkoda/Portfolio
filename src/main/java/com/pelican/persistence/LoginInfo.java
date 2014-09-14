@@ -34,4 +34,8 @@ public class LoginInfo {
     public String getPasswordHash() {
         return passwordHash;
     }
+
+    public int getId() {
+        return id;
+    }
 }

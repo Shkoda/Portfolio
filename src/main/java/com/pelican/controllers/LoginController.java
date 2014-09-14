@@ -32,13 +32,12 @@ public class LoginController {
 
     @RequestMapping(value = {"/", "/login"}, method = {RequestMethod.GET})
     public String loginPrompt() {
-        Loggers.debugLogger.debug("in login controller");
         return "/login";
     }
 
     @RequestMapping(value = {"/registration"}, method = {RequestMethod.GET})
-    public ModelAndView registerPrompt() {
-        return new ModelAndView();
+    public String registerPrompt() {
+        return "/registration";
     }
 
     @RequestMapping(value = {"/submit_registration"}, method = {RequestMethod.POST})
