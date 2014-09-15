@@ -13,9 +13,6 @@ import org.springframework.context.annotation.Configuration;
  * Created by Nightingale on 10.09.2014.
  */
 @Configuration
-//@ComponentScan({"com.pelican.service", "com.pelican.persistence"})
-//@EnableJpaRepositories("com.pelican.persistence.repository")
-//@EnableTransactionManagement
 public class ServiceConfig {
     @Bean
     @Qualifier(value = "loginService")
