@@ -1,6 +1,6 @@
 package com.pelican.controllers;
 
-import com.pelican.persistence.Task;
+import com.pelican.persistence.domain.task.Task;
 import com.pelican.service.TaskService;
 import com.pelican.utils.Loggers;
 import org.apache.commons.io.IOUtils;

@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="com.pelican.persistence.Task" %>
+<%@ page import="com.pelican.persistence.domain.task.Task" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <html lang="en">

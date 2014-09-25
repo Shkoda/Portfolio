@@ -1,6 +1,6 @@
 package com.pelican;
 
-import com.pelican.persistence.LoginInfo;
+import com.pelican.persistence.domain.auth.LoginInfo;
 import com.pelican.persistence.repository.LoginRepository;
 import com.pelican.utils.MD5;
 import org.springframework.boot.SpringApplication;

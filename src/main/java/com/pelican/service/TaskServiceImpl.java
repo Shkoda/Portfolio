@@ -1,7 +1,8 @@
 package com.pelican.service;
 
-import com.pelican.persistence.LoginInfo;
-import com.pelican.persistence.Task;
+import com.pelican.persistence.domain.auth.LoginInfo;
+import com.pelican.persistence.domain.task.Tag;
+import com.pelican.persistence.domain.task.Task;
 import com.pelican.persistence.repository.LoginRepository;
 import com.pelican.persistence.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +16,27 @@ import java.util.List;
  * Created by Nightingale on 13.09.2014.
  */
 @Service
-public class TaskPgService implements TaskService {
+public class TaskServiceImpl implements TaskService {
     @Autowired
     private TaskRepository taskRepository;
     @Autowired
     private LoginRepository loginRepository;
 
+    @Override
+    public List<Tag> getTags(String login) {
+        return null;
+    }
 
     @Override
     public List<Task> getTasks(String login) {
         LoginInfo info = loginRepository.findByLogin(login);
         return getTasks(info == null ? null : info.getId());
+
+//        return getTasks(loginRepository.findIdByLogin(login));
+
     }
+
+
 
     @Override
     @Transactional

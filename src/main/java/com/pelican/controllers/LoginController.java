@@ -1,19 +1,16 @@
 package com.pelican.controllers;
 
 import com.pelican.entity.RegistrationForm;
-import com.pelican.persistence.LoginInfo;
+import com.pelican.persistence.domain.auth.LoginInfo;
 import com.pelican.service.LoginService;
-import com.pelican.utils.Loggers;
 import com.pelican.utils.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;

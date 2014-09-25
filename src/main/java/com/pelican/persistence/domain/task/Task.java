@@ -1,4 +1,4 @@
-package com.pelican.persistence;
+package com.pelican.persistence.domain.task;
 
 import com.pelican.core.event.task.TaskDetails;
 import lombok.Data;

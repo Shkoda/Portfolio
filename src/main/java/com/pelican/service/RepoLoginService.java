@@ -1,8 +1,7 @@
 package com.pelican.service;
 
-import com.pelican.persistence.LoginInfo;
+import com.pelican.persistence.domain.auth.LoginInfo;
 import com.pelican.persistence.repository.LoginRepository;
-import com.pelican.utils.Loggers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

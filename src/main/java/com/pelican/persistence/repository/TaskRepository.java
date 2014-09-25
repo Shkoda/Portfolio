@@ -1,8 +1,7 @@
 package com.pelican.persistence.repository;
 
-import com.pelican.persistence.Task;
+import com.pelican.persistence.domain.task.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 
 import java.io.Serializable;
 import java.util.List;

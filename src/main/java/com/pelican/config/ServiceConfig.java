@@ -3,10 +3,9 @@ package com.pelican.config;
 import com.pelican.service.LoginService;
 import com.pelican.service.RepoLoginService;
 import com.pelican.service.TaskService;
-import com.pelican.service.TaskPgService;
+import com.pelican.service.TaskServiceImpl;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -22,7 +21,7 @@ public class ServiceConfig {
     @Bean
     @Qualifier(value = "taskService")
     public TaskService taskService() {
-        return new TaskPgService();
+        return new TaskServiceImpl();
     }
 
 }

@@ -1,4 +1,4 @@
-package com.pelican.persistence;
+package com.pelican.persistence.domain.auth;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
